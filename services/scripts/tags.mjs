@@ -36,7 +36,7 @@ for (const repository of repositories) {
     if (repository.name.startsWith('umami')) {
         semverRegex = new RegExp(/^postgresql-v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)-([0-9]+)$/g)
     }
-    if (repository.image.includes('ghcr.io')) {
+    if (repository.image.includes('ghcr.io') || repository.image.includes('quay.io')) {
         console.log(`Querying tags of ${repository.name} from ${repository.image}.`);
         const { execaCommand } = await import('execa');
         const { stdout } = await execaCommand(`docker run --rm quay.io/skopeo/stable list-tags docker://${repository.image}`);
