@@ -1,4 +1,4 @@
-# Coolify's Communit Templates repository
+# Coolify's Community Templates repository
 Here you can find all the things required to add new services into Coolify.
 
 ## Which service is eligable to add to Coolify?
