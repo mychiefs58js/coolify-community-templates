@@ -14,7 +14,7 @@ labels:
 services:
   $$id:
     name: Keycloak
-    command: start --db=postgres
+    command: start --db=postgres --features=token-exchange --import-realm
     depends_on:
       - $$id-postgresql
     image: quay.io/keycloak/keycloak:$$core_version
