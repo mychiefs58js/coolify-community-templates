@@ -62,6 +62,9 @@ for (const repository of repositories) {
         if (!tags.includes('latest')) {
             tags.push('latest')
         }
+        if (repository.image === 'bitnami/ghost') {
+            tags.push('4.48.8')
+        }
         services.push({
             name: repository.name,
             image: repository.image,
