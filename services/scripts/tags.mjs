@@ -44,9 +44,6 @@ for (const repository of repositories) {
             const json = JSON.parse(stdout);
             const semverTags = json.Tags.filter((tag) => semverRegex.test(tag))
             let tags = semverTags.length > 10 ? semverTags.sort().reverse().slice(0, numberOfTags) : json.Tags.sort().reverse().slice(0, numberOfTags)
-            if (!tags.includes('latest')) {
-                tags.push('latest')
-            }
             services.push({ name: repository.name, image: repository.image, tags })
         }
     } else {
@@ -59,9 +56,6 @@ for (const repository of repositories) {
         }).json()
         const semverTags = data.tags.filter((tag) => semverRegex.test(tag))
         let tags = semverTags.length > 10 ? semverTags.sort().reverse().slice(0, numberOfTags) : data.tags.sort().reverse().slice(0, numberOfTags)
-        if (!tags.includes('latest')) {
-            tags.push('latest')
-        }
         if (repository.image === 'bitnami/ghost') {
             tags.push('4.48.8')
         }
