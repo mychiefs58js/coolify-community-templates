@@ -629,7 +629,7 @@ variables:
   - id: $$config__app_domain_target
     name: _APP_DOMAIN_TARGET
     label: General | _APP_DOMAIN_TARGET
-    defaultValue: $$generate_fqdn
+    defaultValue: $$generate_domain
     description: >-
       A DNS A record hostname to serve as a CNAME target for your Appwrite
       custom domains. You can use the same value as used for the Appwrite
