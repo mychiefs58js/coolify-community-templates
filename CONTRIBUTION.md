@@ -86,6 +86,9 @@ services:
         domain: $$config_coolify_fqdn_minio_console
       # If only the port is defined, it means, it will be bound to the primary fqdn.
       - port: '9001'
+      # Expose a port to a the host defined in a variable ($$config_hostport_<randomId>)
+      - port: "22"
+        hostPort: $$config_hostport_ssh
 variables:
     # You need to define all variables here.
     # id: must be variable name you defined in the `environment` part above.
@@ -100,6 +103,7 @@ variables:
     ## - $$generate_password -> a secure password will be generated automatically.
     ## - $$generate_hex -> generate random hex data with the length of 24 bytes.
     ## - $$generate_hex(Number) -> generate random bytes of hex data with the length of the Number you set. 
+    ## - $$generate_token -> generate a JWT token with your coolify instance's COOLIFY_SECRET_KEY value.
     ## - $$generate_network -> set the docker network you set for the service.
     # Optional options:
     # main: You can specify where to show the variable on the UI. Must match with one of the service names, like $$id or $$id_mysql, etc.
