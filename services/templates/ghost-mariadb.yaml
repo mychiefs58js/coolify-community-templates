@@ -2,6 +2,7 @@ templateVersion: 1.0.0
 ignore: true
 defaultVersion: latest
 documentation: https://docs.ghost.org
+arch: amd64
 type: ghost-mariadb
 name: Ghost
 subname: (MariaDB)

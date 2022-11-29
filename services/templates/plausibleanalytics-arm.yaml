@@ -1,9 +1,8 @@
 templateVersion: 1.0.0
-defaultVersion: stable
+defaultVersion: 1.5.0-rc.0
 documentation: https://plausible.io/doc/
-arch: amd64
-type: plausibleanalytics
-name: Plausible Analytics
+type: plausibleanalytics-arm
+name: Plausible Analytics (ARM)
 description: A lightweight and open-source website analytics tool.
 labels:
   - analytics
@@ -36,13 +35,13 @@ services:
       - '8000'
   $$id-postgresql:
     name: PostgreSQL
-    image: bitnami/postgresql:14
+    image: postgres:14-alpine
     volumes:
-      - $$id-postgresql-data:/bitnami/postgresql
+      - $$id-postgresql-data:/var/lib/postgresql/data
     environment:
-      - POSTGRESQL_PASSWORD=$$secret_postgresql_password
-      - POSTGRESQL_USERNAME=$$config_postgresql_username
-      - POSTGRESQL_DATABASE=$$config_postgresql_database
+      - POSTGRES_PASSWORD=$$secret_postgres_password
+      - POSTGRES_USER=$$config_postgres_user
+      - POSTGRES_DB=$$config_postgres_db
   $$id-clickhouse:
     name: Clickhouse
     volumes:
@@ -82,7 +81,7 @@ variables:
     name: DATABASE_URL
     label: Database URL for PostgreSQL
     defaultValue: >-
-      postgresql://$$config_postgresql_username:$$secret_postgresql_password@$$id-postgresql:5432/$$config_postgresql_database
+      postgresql://$$config_postgres_user:$$secret_postgres_password@$$id-postgresql:5432/$$config_postgres_db
     description: ''
   - id: $$secret_clickhouse_database_url
     name: CLICKHOUSE_DATABASE_URL
@@ -120,22 +119,22 @@ variables:
     label: Disable Registration
     defaultValue: 'true'
     description: ''
-  - id: $$config_postgresql_username
+  - id: $$config_postgres_user
     main: $$id-postgresql
-    name: POSTGRESQL_USERNAME
+    name: POSTGRES_USER
     label: PostgreSQL Username
     defaultValue: postgresql
     description: ''
-  - id: $$secret_postgresql_password
+  - id: $$secret_postgres_password
     main: $$id-postgresql
-    name: POSTGRESQL_PASSWORD
+    name: POSTGRES_PASSWORD
     label: PostgreSQL Password
     defaultValue: $$generate_password
     description: ''
     showOnConfiguration: true
-  - id: $$config_postgresql_database
+  - id: $$config_postgres_db
     main: $$id-postgresql
-    name: POSTGRESQL_DATABASE
+    name: POSTGRES_DB
     label: PostgreSQL Database
     defaultValue: plausible
     description: ''
