@@ -36,7 +36,7 @@ services:
       - '8000'
   $$id-postgresql:
     name: PostgreSQL
-    image: bitnami/postgresql:14
+    image: bitnami/postgresql:13
     volumes:
       - $$id-postgresql-data:/bitnami/postgresql
     environment:
