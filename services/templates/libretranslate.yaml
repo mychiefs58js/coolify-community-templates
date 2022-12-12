@@ -54,5 +54,5 @@ variables:
     name: WEB_UI
     label: Web UI
     defaultValue: "false"
-    description: "Disable or enable web ui."
+    description: "Disable or enable web ui. True or false."
     showOnConfiguration: true
