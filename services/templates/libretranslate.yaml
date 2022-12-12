@@ -1,0 +1,58 @@
+templateVersion: 1.0.0
+defaultVersion: v3.6
+documentation: https://github.com/LibreTranslate/LibreTranslate
+description: Free and Open Source Machine Translation API. 100% self-hosted, offline capable and easy to setup.
+type: libretranslate
+name: Libretranslate
+labels:
+  - translator
+  - argos
+  - python
+  - libretranslate
+services:
+  $$id:
+    name: Libretranslate
+    image: libretranslate/libretranslate:$$core_version
+    environment:
+      - LT_HOST=0.0.0.0
+      - LT_CHAR_LIMIT=$$config_char_limit
+      - LT_REQ_LIMIT=$$config_req_limit
+      - LT_BATCH_LIMIT=$$config_batch_limit
+      - LT_GA_ID=$$config_ga_id
+      - LT_SUGGESTIONS=true
+      - LT_DISABLE_WEB_UI=$$config_web_ui
+    volumes:
+      - $$id-libretranslate:/libretranslate
+    ports:
+      - "5000"
+variables:
+  - id: $$config_char_limit
+    name: CHAR_LIMIT
+    label: Char limit
+    defaultValue: "5000"
+    description: "Set character limit."
+    showOnConfiguration: true
+  - id: $$config_req_limit
+    name: REQ_LIMIT
+    label: Request limit
+    defaultValue: "5000"
+    description: "Set maximum number of requests per minute per client."
+    showOnConfiguration: true
+  - id: $$config_batch_limit
+    name: BATCH_LIMIT
+    label: Batch Limit
+    defaultValue: "5000"
+    description: "Set maximum number of texts to translate in a batch request."
+    showOnConfiguration: true
+  - id: $$config_ga_id
+    name: GA_ID
+    label: Batch Limit
+    defaultValue: ""
+    description: "Enable Google Analytics on the API client page by providing an ID"
+    showOnConfiguration: true
+  - id: $$config_web_ui
+    name: WEB_UI
+    label: Batch Limit
+    defaultValue: "true"
+    description: "Disable or enable web ui."
+    showOnConfiguration: true
