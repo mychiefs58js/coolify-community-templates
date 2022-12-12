@@ -52,7 +52,7 @@ variables:
     showOnConfiguration: true
   - id: $$config_web_ui
     name: WEB_UI
-    label: Batch Limit
-    defaultValue: "true"
+    label: Web UI
+    defaultValue: "false"
     description: "Disable or enable web ui."
     showOnConfiguration: true
