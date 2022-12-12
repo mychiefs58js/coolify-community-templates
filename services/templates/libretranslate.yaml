@@ -15,11 +15,11 @@ services:
     image: libretranslate/libretranslate:$$core_version
     environment:
       - LT_HOST=0.0.0.0
+      - LT_SUGGESTIONS=true
       - LT_CHAR_LIMIT=$$config_char_limit
       - LT_REQ_LIMIT=$$config_req_limit
       - LT_BATCH_LIMIT=$$config_batch_limit
       - LT_GA_ID=$$config_ga_id
-      - LT_SUGGESTIONS=true
       - LT_DISABLE_WEB_UI=$$config_web_ui
     volumes:
       - $$id-libretranslate:/libretranslate
