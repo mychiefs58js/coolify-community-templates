@@ -1,5 +1,5 @@
 templateVersion: 1.0.0
-defaultVersion: '5.22'
+defaultVersion: 5.25.3
 documentation: https://docs.ghost.org
 type: ghost-only
 name: Ghost
