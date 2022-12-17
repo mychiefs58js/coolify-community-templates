@@ -146,3 +146,16 @@ variables:
     description: ''
     showOnConfiguration: true
 ```
+
+## Test your template
+You can test your template by setting up a coolify [development enviroment](https://github.com/coollabsio/coolify/blob/main/CONTRIBUTION.md). After that add your template to `coolify/apps/api/devTemplates.yaml` and add an entry like this to the `apps/api/devTags.json`
+```json
+{
+  "name": "name",
+  "image": "image",
+  "tags": [
+     "latest"
+  ]
+}
+```
+Start the app and test your template
