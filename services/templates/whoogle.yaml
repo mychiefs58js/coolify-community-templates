@@ -1,0 +1,54 @@
+templateVersion: 1.0.0
+defaultVersion: latest
+documentation: https://github.com/benbusby/whoogle-search
+type: whoogle
+name: Whoogle Search
+description: A self-hosted, ad-free, privacy-respecting metasearch engine
+labels:
+  - search
+  - google
+services:
+  $$id:
+    name: Whoogle Search
+    documentation: https://github.com/benbusby/whoogle-search
+    depends_on: []
+    image: benbusby/whoogle-search:$$core_version
+    restart: unless-stopped
+    pids_limit: 50
+    mem_limit: 256mb
+    memswap_limit: 256mb
+    user: whoogle
+    security_opt:
+      - no-new-privileges
+    cap_drop:
+      - ALL
+    tmpfs:
+      - /config/:size=10M,uid=927,gid=927,mode=1700
+      - /var/lib/tor/:size=15M,uid=927,gid=927,mode=1700
+      - /run/tor/:size=1M,uid=927,gid=927,mode=1700
+    environment:
+      - WHOOGLE_USER=$$secret_whoogle_username
+      - WHOOGLE_PASS=$$secret_whoogle_password
+      - WHOOGLE_CONFIG_PREFERENCES_KEY=$$secret_whoogle_preferences_key
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    ports:
+      - "5000"
+variables:
+  - id: $$secret_whoogle_username
+    name: WHOOGLE_USER
+    label: Whoogle User
+    defaultValue: $$generate_username
+    description: "Username to log into Whoogle"
+  - id: $$secret_whoogle_password
+    name: WHOOGLE_PASSWORD
+    label: Whoogle password
+    defaultValue: $$generate_password
+    description: "Password to log into Whoogle"
+  - id: $$secret_whoogle_preferences_key
+    name: WHOOGLE_CONFIG_PREFERENCES_KEY
+    label: Whoogle preferences key
+    defaultValue: $$generate_password
+    description: "password to encrypt preferences"
