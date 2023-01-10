@@ -1,0 +1,13 @@
+templateVersion: 1.0.0
+defaultVersion: 1.1.3
+documentation: https://docs.openblocks.dev/
+type: openblocks
+name: Openblocks
+description: The Open Source Retool Alternative
+services:
+  $$id:
+    image: openblocksdev/openblocks-ce:$$core_version
+    volumes:
+      - $$id-stacks-data:/openblocks-stacks
+    ports:
+      - '3000'
