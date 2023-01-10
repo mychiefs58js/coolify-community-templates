@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import yaml from 'js-yaml';
 import got from 'got';
+import semverSort from 'semver-sort'
 
 const repositories = [];
 const templateDir = './services/templates'
@@ -54,7 +55,10 @@ for (const repository of repositories) {
                 Authorization: `Bearer ${token}`
             }
         }).json()
-        const semverTags = data.tags.filter((tag) => semverRegex.test(tag))
+        let semverTags = data.tags.filter((tag) => semverRegex.test(tag))
+        try {
+            semverTags = semverSort.desc(semverTags)
+        } catch(error) { }
         let tags = semverTags.length > 10 ? semverTags.sort().reverse().slice(0, numberOfTags) : data.tags.sort().reverse().slice(0, numberOfTags)
         if (repository.image === 'bitnami/ghost') {
             tags.push('4.48.8')
