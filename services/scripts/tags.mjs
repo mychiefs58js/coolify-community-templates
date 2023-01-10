@@ -56,10 +56,21 @@ for (const repository of repositories) {
             }
         }).json()
         let semverTags = data.tags.filter((tag) => semverRegex.test(tag))
+        let sort = true
         try {
             semverTags = semverSort.desc(semverTags)
+            sort = false
         } catch(error) { }
-        let tags = semverTags.length > 10 ? semverTags.sort().reverse().slice(0, numberOfTags) : data.tags.sort().reverse().slice(0, numberOfTags)
+        let tags = []
+        if (semverTags.length > 10) {
+            if (sort) {
+                tags = semverTags.sort().reverse().slice(0, numberOfTags)
+            } else {
+                tags = semverTags.slice(0, numberOfTags)
+            }
+        } else {
+            tags = data.tags.sort().reverse().slice(0, numberOfTags)
+        }
         if (repository.image === 'bitnami/ghost') {
             tags.push('4.48.8')
         }
