@@ -1,7 +1,9 @@
 templateVersion: 1.0.0
-defaultVersion: v3.6
+defaultVersion: v1.3.8
 documentation: https://github.com/LibreTranslate/LibreTranslate
-description: Free and Open Source Machine Translation API. 100% self-hosted, offline capable and easy to setup.
+description: >-
+  Free and Open Source Machine Translation API. 100% self-hosted, offline
+  capable and easy to setup.
 type: libretranslate
 name: Libretranslate
 labels:
@@ -16,43 +18,38 @@ services:
     environment:
       - LT_HOST=0.0.0.0
       - LT_SUGGESTIONS=true
-      - LT_CHAR_LIMIT=$$config_char_limit
-      - LT_REQ_LIMIT=$$config_req_limit
-      - LT_BATCH_LIMIT=$$config_batch_limit
-      - LT_GA_ID=$$config_ga_id
-      - LT_DISABLE_WEB_UI=$$config_web_ui
+      - LT_CHAR_LIMIT=$$config_lt_char_limit
+      - LT_REQ_LIMIT=$$config_lt_req_limit
+      - LT_BATCH_LIMIT=$$config_lt_batch_limit
+      - LT_GA_ID=$$config_lt_ga_id
+      - LT_DISABLE_WEB_UI=$$config_lt_web_ui
     volumes:
       - $$id-libretranslate:/libretranslate
     ports:
-      - "5000"
+      - '5000'
 variables:
-  - id: $$config_char_limit
-    name: CHAR_LIMIT
+  - id: $$config_lt_char_limit
+    name: LT_CHAR_LIMIT
     label: Char limit
-    defaultValue: "5000"
-    description: "Set character limit."
-    showOnConfiguration: true
-  - id: $$config_req_limit
-    name: REQ_LIMIT
+    defaultValue: '5000'
+    description: Set character limit.
+  - id: $$config_lt_req_limit
+    name: LT_REQ_LIMIT
     label: Request limit
-    defaultValue: "5000"
-    description: "Set maximum number of requests per minute per client."
-    showOnConfiguration: true
-  - id: $$config_batch_limit
-    name: BATCH_LIMIT
+    defaultValue: '5000'
+    description: Set maximum number of requests per minute per client.
+  - id: $$config_lt_batch_limit
+    name: LT_BATCH_LIMIT
     label: Batch Limit
-    defaultValue: "5000"
-    description: "Set maximum number of texts to translate in a batch request."
-    showOnConfiguration: true
-  - id: $$config_ga_id
-    name: GA_ID
-    label: Batch Limit
-    defaultValue: ""
-    description: "Enable Google Analytics on the API client page by providing an ID"
-    showOnConfiguration: true
-  - id: $$config_web_ui
-    name: WEB_UI
+    defaultValue: '5000'
+    description: Set maximum number of texts to translate in a batch request.
+  - id: $$config_lt_ga_id
+    name: LT_GA_ID
+    label: Google Analytics ID
+    defaultValue: ''
+    description: Enable Google Analytics on the API client page by providing an ID
+  - id: $$config_lt_web_ui
+    name: LT_DISABLE_WEB_UI
     label: Web UI
-    defaultValue: "false"
-    description: "Disable or enable web ui. True or false."
-    showOnConfiguration: true
+    defaultValue: 'false'
+    description: Disable or enable web ui. True or false.

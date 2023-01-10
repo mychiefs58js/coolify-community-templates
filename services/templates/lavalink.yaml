@@ -18,12 +18,12 @@ services:
     volumes:
       - $$id-lavalink:/lavalink
     ports:
-      - '2333'
+      - $$config_port
     files:
       - location: /opt/Lavalink/application.yml
         content: |-
           server:
-            port: $$config_port
+            port: 2333
             address: 0.0.0.0
           lavalink:
             server:
@@ -50,11 +50,6 @@ services:
                 max-file-size: 1GB
                 max-history: 30
 variables:
-  - id: $$config_port
-    name: PORT
-    label: Port
-    defaultValue: '2333'
-    required: true
   - id: $$secret_password
     name: PASSWORD
     label: Password
