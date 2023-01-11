@@ -26,7 +26,6 @@ services:
     volumes:
       - "$$id-app-public:/app/public"
       - "$$id-app-var:/app/var"
-      - "/app/var/cache"
     environment:
       - APP_HOST=$$config_app_host
       - APP_DEBUG=$$config_app_debug
@@ -53,7 +52,6 @@ services:
     command: [ 'bin/console', 'messenger:consume', 'async', '--limit=500' ]
     volumes:
       - "$$id-app-var:/app/var"
-      - "/app/var/cache"
     environment:
       - APP_HOST=$$config_app_host
       - APP_DEBUG=$$config_app_debug
@@ -80,7 +78,6 @@ services:
     command: [ 'crond', '-f', '-L', '/app/var/log/cron.log' ]
     volumes:
       - "$$id-app-var:/app/var"
-      - "/app/var/cache"
     environment:
       - APP_HOST=$$config_app_host
       - APP_DEBUG=$$config_app_debug
