@@ -1,5 +1,5 @@
 templateVersion: 1.0.0
-defaultVersion: 0.21.1
+defaultVersion: stable
 documentation: https://fider.io/docs
 type: fider
 name: Fider

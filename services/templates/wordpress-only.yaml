@@ -1,5 +1,5 @@
 templateVersion: 1.0.0
-defaultVersion: php8.1
+defaultVersion: php8.2
 documentation: https://wordpress.org/
 type: wordpress-only
 name: WordPress

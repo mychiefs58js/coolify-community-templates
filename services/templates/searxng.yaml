@@ -1,5 +1,5 @@
 templateVersion: 1.0.0
-defaultVersion: 2022.12.12-966e9c3c
+defaultVersion: 2023.01.15-52d41559
 documentation: https://docs.searxng.org/
 type: searxng
 name: SearXNG
