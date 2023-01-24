@@ -45,6 +45,9 @@ for (const repository of repositories) {
       /^postgresql-v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)-([0-9]+)$/g
     );
   }
+  if (repository.name.startsWith("repman")) {
+    repository.image = "buddy/repman";
+  }
   if (
     repository.image.includes("ghcr.io") ||
     repository.image.includes("quay.io")
@@ -74,6 +77,7 @@ for (const repository of repositories) {
         `https://auth.docker.io/token?service=registry.docker.io&scope=repository:${repository.image}:pull`
       )
       .json();
+
     let data = await got
       .get(`https://registry-1.docker.io/v2/${repository.image}/tags/list`, {
         headers: {

@@ -15,6 +15,8 @@ services:
     image: mattermost/mattermost-enterprise-edition:$$core_version
     security_opt:
       - no-new-privileges:true
+    ports:
+      - "8065"
     pids_limit: 200
     volumes:
       - $$id-mattermost-config:/mattermost/config:rw
