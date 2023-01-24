@@ -3,6 +3,7 @@ defaultVersion: 1.4.0
 documentation: https://repman.io/
 type: repman-postgresql
 name: Repman
+isBeta: true
 subname: (postgresql)
 description: Free and Open Source PHP Repository Manager
 labels:
@@ -10,8 +11,8 @@ labels:
   - "composer"
   - "repository"
 services:
-  $$id:
-    name: App
+  $$id-app:
+    name: Repman
     depends_on:
       - $$id-postgresql
     image: "buddy/repman:$$core_version"
@@ -43,13 +44,15 @@ services:
       - OAUTH_BITBUCKET_CLIENT_SECRET=$$secret_ouath_bitbucket_client_secret
       - OAUTH_BUDDY_CLIENT_ID=$$secret_ouath_buddy_client_id
       - OAUTH_BUDDY_CLIENT_SECRET=$$secret_ouath_buddy_client_secret
-
-  $$id_consumer:
-    name: App Consumer
+    proxy:
+      - port: "9000"
+        domain: repo.$$config_app_host
+  $$id-consumer:
+    name: Repman Consumer
     depends_on:
       - $$id-postgresql
     image: "buddy/repman:$$core_version"
-    command: [ 'bin/console', 'messenger:consume', 'async', '--limit=500' ]
+    command: ["bin/console", "messenger:consume", "async", "--limit=500"]
     volumes:
       - "$$id-app-var:/app/var"
     environment:
@@ -69,13 +72,12 @@ services:
       - OAUTH_BITBUCKET_CLIENT_SECRET=$$secret_ouath_bitbucket_client_secret
       - OAUTH_BUDDY_CLIENT_ID=$$secret_ouath_buddy_client_id
       - OAUTH_BUDDY_CLIENT_SECRET=$$secret_ouath_buddy_client_secret
-
-  $$id_cron:
-    name: App CRON
+  $$id-cron:
+    name: Repman Cron
     depends_on:
       - $$id-postgresql
     image: "buddy/repman:$$core_version"
-    command: [ 'crond', '-f', '-L', '/app/var/log/cron.log' ]
+    command: ["crond", "-f", "-L", "/app/var/log/cron.log"]
     volumes:
       - "$$id-app-var:/app/var"
     environment:
@@ -112,12 +114,16 @@ services:
       - POSTGRES_USER=$$config_postgres_user
       - POSTGRES_DB=$$config_postgres_db
 
-  $$id-nginx:
+  $$id:
+    name: Nginx Proxy
     image: nginx:1.17-alpine
     depends_on:
-      - $$id
+      - $$id-app
     ports:
       - "80"
+    proxy:
+      - port: "80"
+        domain: $$config_app_host
     volumes:
       - "$$id-app-public:/app/public"
     files:
@@ -128,95 +134,106 @@ services:
               root /app/public;
               index index.php index.html;
               server_name $$config_app_host;
-
               location / {
                   try_files $uri $uri/ /index.php?$query_string;
               }
-
               location ~ \.php$ {
                   try_files $uri =404;
                   fastcgi_split_path_info ^(.+\.php)(/.+)$;
-                  fastcgi_pass $$id:9000;
+                  fastcgi_pass $$id-app:9000;
                   fastcgi_index index.php;
                   include fastcgi_params;
                   fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
                   fastcgi_param PATH_INFO $fastcgi_path_info;
               }
           }
-
-
 variables:
   - id: $$config_app_host
+    main: $$id-app
     name: APP_HOST
     label: App Host
     defaultValue: $$generate_domain
     description: ""
   - id: $$config_app_debug
+    main: $$id-app
     name: APP_DEBUG
     label: App Debug
     defaultValue: "0"
-    description: "0 - debugging disabled, 1 - debugging enabled"
+    description: "0 - debugging disabled<br>1 - debugging enabled"
   - id: $$config_app_domain_separator
+    main: $$id-app
     name: APP_DOMAIN_SEPARATOR
     label: App Domain Separator
     defaultValue: "."
     description: ""
   - id: $$config_app_organization_separator
+    main: $$id-app
     name: APP_ORGANIZATION_SEPARATOR
     label: App Organization Separator
     defaultValue: "."
     description: ""
   - id: $$config_app_allowed_package_types
+    main: $$id-app
     name: APP_ALLOWED_PACKAGE_TYPES
     label: List of Allowed Packages Types
     defaultValue: "git,github,gitlab,bitbucket,subversion,mercurial,pear,artifact,path"
     description: ""
   - id: $$secret_ouath_github_client_id
+    main: $$id-app
     name: OAUTH_GITHUB_CLIENT_ID
     label: GITHUB OAuth Client ID
     defaultValue: ""
     description: ""
   - id: $$secret_ouath_github_client_secret
+    main: $$id-app
     name: OAUTH_GITHUB_CLIENT_SECRET
     label: GITHUB OAuth Client Secret
     defaultValue: ""
     description: ""
   - id: $$secret_ouath_gitlab_client_id
+    main: $$id-app
     name: OAUTH_GITLAB_CLIENT_ID
     label: GITLAB OAuth Client ID
     defaultValue: ""
     description: ""
   - id: $$secret_ouath_gitlab_client_secret
+    main: $$id-app
     name: OAUTH_GITLAB_CLIENT_SECRET
     label: GITLAB OAuth Client Secret
     defaultValue: ""
     description: ""
   - id: $$secret_ouath_bitbucket_client_id
+    main: $$id-app
     name: OAUTH_BITBUCKET_CLIENT_ID
     label: BITBUCKET OAuth Client ID
     defaultValue: ""
     description: ""
   - id: $$secret_ouath_bitbucket_client_secret
+    main: $$id-app
     name: OAUTH_BITBUCKET_CLIENT_SECRET
     label: BITBUCKET OAuth Client Secret
     defaultValue: ""
     description: ""
   - id: $$secret_ouath_buddy_client_id
+    main: $$id-app
     name: OAUTH_BUDDY_CLIENT_ID
     label: BUDDY OAuth Client ID
     defaultValue: ""
     description: ""
   - id: $$secret_ouath_buddy_client_secret
+    main: $$id-app
     name: OAUTH_BUDDY_CLIENT_SECRET
     label: BUDDY OAuth Client Secret
     defaultValue: ""
     description: ""
   - id: $$config_mailer_dsn
+    main: $$id-app
     name: MAILER_DSN
     label: Mailer DSN
     defaultValue: smtp://mailhog:1025
     description: ""
   - id: $$config_mailer_sender
+    main: $$id-app
     name: MAILER_SENDER
     label: Mailer Sender
     defaultValue: repman@buddy.works
@@ -244,5 +261,5 @@ variables:
     main: $$id-postgresql
     name: POSTGRES_DB
     label: PostgreSQL Database
-    defaultValue: plausible
+    defaultValue: repman
     description: ""
