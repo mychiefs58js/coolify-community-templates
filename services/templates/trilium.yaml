@@ -1,5 +1,5 @@
 templateVersion: 1.0.0
-defaultVersion: 0.57.4
+defaultVersion: 0.58.4
 documentation: https://hub.docker.com/r/zadam/trilium
 description: >-
   A hierarchical note taking application with focus on building large personal

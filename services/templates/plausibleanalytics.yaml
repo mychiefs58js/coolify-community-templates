@@ -1,5 +1,5 @@
 templateVersion: 1.0.0
-defaultVersion: stable
+defaultVersion: v1.5.1
 documentation: https://plausible.io/doc/
 arch: amd64
 type: plausibleanalytics

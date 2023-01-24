@@ -1,5 +1,5 @@
 templateVersion: 1.0.0
-defaultVersion: 4.9.0
+defaultVersion: 4.9.1
 documentation: https://coder.com/docs/coder-oss/latest
 type: vscodeserver
 name: VSCode Server
@@ -13,7 +13,6 @@ services:
     depends_on: []
     image: codercom/code-server:$$core_version
     volumes:
-      - $$id-config-data:/home/coder/.local/share/code-server
       - $$id-vscodeserver-data:/home/coder
       - $$id-keys-directory:/root/.ssh
       - $$id-theme-and-plugin-directory:/root/.local/share/code-server
