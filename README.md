@@ -9,8 +9,6 @@ The following statements need to be true:
 - Maintained (I do not want to add software full of bugs and 0 support), but exceptions could be made.
 
 ## Icons
-Service icons need to be manually added [here](https://github.com/coollabsio/coolify/tree/main/apps/ui/static). 
-
 The icon name should be the same as the `type` field in the template.
 
 ## Add new service
