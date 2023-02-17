@@ -90,8 +90,8 @@ for (const repository of repositories) {
     try {
       semverTags = semverSort.desc(semverTags);
       sort = false;
-    } catch (error) {}
-    let tags = [];
+    } catch (error) { }
+    let tags = ["latest"];
     if (semverTags.length > 0) {
       if (sort) {
         tags = semverTags.sort().reverse().slice(0, numberOfTags);
@@ -111,4 +111,4 @@ for (const repository of repositories) {
     });
   }
 }
-await fs.writeFile("output/service-tags.json", JSON.stringify(services));
+await fs.writeFile("output/service-tags.json", JSON.stringify(services, null, 2));
