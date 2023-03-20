@@ -6,7 +6,7 @@ name: Pocketbase
 description: Open Source realtime backend in 1 file
 services:
   $$id:
-    image: coollabsio/pocketbase:$$core_version
+    image: ghcr.io/coollabsio/pocketbase:$$core_version
     volumes:
       - $$id-data:/app/pb_data
     ports:

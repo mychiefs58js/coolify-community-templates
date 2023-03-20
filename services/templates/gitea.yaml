@@ -32,6 +32,7 @@ services:
     proxy:
       - port: '22'
         hostPort: $$config_hostport_ssh
+      - port: '3000'
 variables:
   - id: $$config_hostport_ssh
     name: SSH_PORT
