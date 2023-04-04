@@ -2573,6 +2573,13 @@
         - ADMIN_USER_PWD=$$secret_admin_user_pwd
         - BASE_URL=$$config_base_url
         - SECRET_KEY_BASE=$$secret_secret_key_base
+        - MAILER_EMAIL=$$config_email_from
+        - SMTP_HOST_ADDR=$$config_email_address
+        - SMTP_HOST_PORT=$$config_email_port
+        - SMTP_USER_NAME=$$config_email_name
+        - SMTP_USER_PWD=$$config_email_pass
+        - SMTP_HOST_SSL_ENABLED=$$config_email_ssl
+        - SMTP_HOST_RETRIES=$$config_email_retries
         - DISABLE_AUTH=$$config_disable_auth
         - DISABLE_REGISTRATION=$$config_disable_registration
         - DATABASE_URL=$$secret_database_url
@@ -2684,6 +2691,49 @@
       label: PostgreSQL Database
       defaultValue: plausible
       description: ''
+    - id: $$config_email_from
+      name: MAILER_EMAIL
+      label: Mailer Email
+      defaultValue: hello@plausible.local
+      description: >-
+        The email id to use for as from address of all communications from Plausible.
+    - id: $$config_email_address
+      name: SMTP_HOST_ADDR
+      label: SMTP Host Address
+      defaultValue: localhost
+      description: >-
+        The host address of your smtp server.
+    - id: $$config_email_port
+      name: SMTP_HOST_PORT
+      label: SMTP Port
+      defaultValue: 25
+      description: >-
+        The port of your smtp server.
+    - id: $$config_email_name
+      name: SMTP_USER_NAME
+      label: SMTP Username
+      defaultValue: username
+      description: >-
+        The username/email in case SMTP auth is enabled.
+    - id: $$config_email_pass
+      name: SMTP_USER_PWD
+      label: SMTP Password
+      defaultValue: password
+      description: >-
+        The password in case SMTP auth is enabled.
+      showOnConfiguration: true
+    - id: $$config_email_ssl
+      name: SMTP_HOST_SSL_ENABLED
+      label: SMTP SSL
+      defaultValue: false
+      description: >-
+        If SSL is enabled for SMTP connection
+    - id: $$config_email_retries
+      name: SMTP_HOST_RETRIES
+      label: SMTP Retries
+      defaultValue: 2
+      description: >-
+        Number of retries to make until mailer gives up.
     - id: $$config_scriptName
       name: SCRIPT_NAME
       label: Custom Script Name
@@ -2719,6 +2769,13 @@
         - ADMIN_USER_PWD=$$secret_admin_user_pwd
         - BASE_URL=$$config_base_url
         - SECRET_KEY_BASE=$$secret_secret_key_base
+        - MAILER_EMAIL=$$config_email_from
+        - SMTP_HOST_ADDR=$$config_email_address
+        - SMTP_HOST_PORT=$$config_email_port
+        - SMTP_USER_NAME=$$config_email_name
+        - SMTP_USER_PWD=$$config_email_pass
+        - SMTP_HOST_SSL_ENABLED=$$config_email_ssl
+        - SMTP_HOST_RETRIES=$$config_email_retries
         - DISABLE_AUTH=$$config_disable_auth
         - DISABLE_REGISTRATION=$$config_disable_registration
         - DATABASE_URL=$$secret_database_url
@@ -2830,6 +2887,49 @@
       label: PostgreSQL Database
       defaultValue: plausible
       description: ''
+    - id: $$config_email_from
+      name: MAILER_EMAIL
+      label: Mailer Email
+      defaultValue: hello@plausible.local
+      description: >-
+        The email id to use for as from address of all communications from Plausible.
+    - id: $$config_email_address
+      name: SMTP_HOST_ADDR
+      label: SMTP Host Address
+      defaultValue: localhost
+      description: >-
+        The host address of your smtp server.
+    - id: $$config_email_port
+      name: SMTP_HOST_PORT
+      label: SMTP Port
+      defaultValue: 25
+      description: >-
+        The port of your smtp server.
+    - id: $$config_email_name
+      name: SMTP_USER_NAME
+      label: SMTP Username
+      defaultValue: username
+      description: >-
+        The username/email in case SMTP auth is enabled.
+    - id: $$config_email_pass
+      name: SMTP_USER_PWD
+      label: SMTP Password
+      defaultValue: password
+      description: >-
+        The password in case SMTP auth is enabled.
+      showOnConfiguration: true
+    - id: $$config_email_ssl
+      name: SMTP_HOST_SSL_ENABLED
+      label: SMTP SSL
+      defaultValue: false
+      description: >-
+        If SSL is enabled for SMTP connection
+    - id: $$config_email_retries
+      name: SMTP_HOST_RETRIES
+      label: SMTP Retries
+      defaultValue: 2
+      description: >-
+        Number of retries to make until mailer gives up.
     - id: $$config_scriptName
       name: SCRIPT_NAME
       label: Custom Script Name
