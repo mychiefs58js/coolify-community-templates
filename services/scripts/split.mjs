@@ -7,10 +7,10 @@ async function getRemote() {
     return await got.get(templateDir).text()
 }
 async function getLocal() {
-    const templateDir = '../coolify/apps/api/devTemplates.yaml'
+    const templateDir = '../coolify-v3/apps/api/devTemplates.yaml'
     return await fs.readFile(templateDir, 'utf8')
 }
-const data = await getLocal();
+const data = await getRemote();
 const json = yaml.load(data)
 for (const template of json) {
     const type = template.type
