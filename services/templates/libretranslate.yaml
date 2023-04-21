@@ -1,9 +1,7 @@
 templateVersion: 1.0.0
-defaultVersion: v1.3.8
+defaultVersion: v1.3.10
 documentation: https://github.com/LibreTranslate/LibreTranslate
-description: >-
-  Free and Open Source Machine Translation API. 100% self-hosted, offline
-  capable and easy to setup.
+description: Free and Open Source Machine Translation API. 100% self-hosted, offline capable and easy to setup.
 type: libretranslate
 name: Libretranslate
 labels:

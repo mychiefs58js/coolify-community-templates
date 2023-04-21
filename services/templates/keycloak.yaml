@@ -1,11 +1,9 @@
 templateVersion: 1.0.0
-defaultVersion: '20.0'
+defaultVersion: 21.1.0
 documentation: https://www.keycloak.org/documentation
 type: keycloak
 name: Keycloak
-description: >-
-  Keycloak provides user federation, strong authentication, user management,
-  fine-grained authorization, and more.
+description: Keycloak provides user federation, strong authentication, user management, fine-grained authorization, and more.
 labels:
   - authentication
   - authorization

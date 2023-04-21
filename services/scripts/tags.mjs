@@ -8,6 +8,12 @@ const templateDir = "./services/templates";
 
 const dir = await fs.readdir(templateDir);
 
+const args = process.argv.slice(2);
+if (args[0] === "filter") {
+  await filterTags();
+  process.exit(0);
+}
+
 for (const file of dir) {
   const data = await fs.readFile(`${templateDir}/${file}`, "utf8");
   const template = yaml.load(data);
@@ -90,8 +96,8 @@ for (const repository of repositories) {
     try {
       semverTags = semverSort.desc(semverTags);
       sort = false;
-    } catch (error) { }
-    let tags = ["latest"];
+    } catch (error) {}
+    let tags = [];
     if (semverTags.length > 0) {
       if (sort) {
         tags = semverTags.sort().reverse().slice(0, numberOfTags);
@@ -111,4 +117,30 @@ for (const repository of repositories) {
     });
   }
 }
-await fs.writeFile("output/service-tags.json", JSON.stringify(services, null, 2));
+await fs.writeFile(
+  "output/service-tags.json",
+  JSON.stringify(services, null, 2)
+);
+await filterTags();
+
+async function filterTags() {
+  const services = JSON.parse(
+    await fs.readFile("output/service-tags.json", "utf8")
+  );
+  for (let service of services) {
+    service.tags = service.tags.filter((tag) => tag !== "latest");
+    if (service.name === "pocketbase") {
+      service.tags = service.tags.filter((tag) => !tag.includes("-aarch"));
+    }
+    if (service.name === "soketi-only") {
+      service.tags = service.tags.filter((tag) => !tag.startsWith("pr-"));
+    }
+    if (service.name === "fider") {
+      service.tags = service.tags.filter((tag) => !tag.startsWith("SHA_"));
+    }
+  }
+  await fs.writeFile(
+    "output/service-tags.json",
+    JSON.stringify(services, null, 2)
+  );
+}

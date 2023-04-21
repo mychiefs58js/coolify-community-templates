@@ -1,6 +1,6 @@
 templateVersion: 1.0.0
 ignore: true
-defaultVersion: 5.30.0
+defaultVersion: 5.44.0
 documentation: https://docs.ghost.org
 arch: amd64
 type: ghost-mariadb

@@ -1,5 +1,5 @@
 templateVersion: 1.0.0
-defaultVersion: v3.0.2
+defaultVersion: v3.1.1
 documentation: https://glitchtip.com/documentation
 type: glitchtip
 name: GlitchTip
@@ -121,14 +121,12 @@ variables:
   - id: $$secret_email_url
     name: EMAIL_URL
     label: SMTP Email URL
-    defaultValue: >-
-      smtp://$$config_email_host_user:$$secret_email_host_password@$$config_email_host:$$config_email_port
+    defaultValue: smtp://$$config_email_host_user:$$secret_email_host_password@$$config_email_host:$$config_email_port
     description: ''
   - id: $$secret_database_url
     name: DATABASE_URL
     label: Database URL for PostgreSQL
-    defaultValue: >-
-      postgresql://$$config_postgres_user:$$secret_postgres_password@$$id-postgresql:5432/$$config_postgres_db
+    defaultValue: postgresql://$$config_postgres_user:$$secret_postgres_password@$$id-postgresql:5432/$$config_postgres_db
     description: ''
   - id: $$secret_redis_url
     name: REDIS_URL

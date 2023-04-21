@@ -1,6 +1,6 @@
 templateVersion: 1.0.0
 ignore: true
-defaultVersion: postgresql-v1.39.5
+defaultVersion: postgresql-v2.0.1
 documentation: https://umami.is/docs/getting-started
 type: umami
 name: Umami
@@ -170,8 +170,7 @@ variables:
   - id: $$secret_database_url
     name: DATABASE_URL
     label: Database URL for PostgreSQL
-    defaultValue: >-
-      postgresql://$$config_postgres_user:$$secret_postgres_password@$$id-postgresql:5432/$$config_postgres_db
+    defaultValue: postgresql://$$config_postgres_user:$$secret_postgres_password@$$id-postgresql:5432/$$config_postgres_db
     description: ''
   - id: $$secret_hash_salt
     name: HASH_SALT

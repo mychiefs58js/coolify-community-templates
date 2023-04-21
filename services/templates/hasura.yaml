@@ -1,5 +1,5 @@
 templateVersion: 1.0.0
-defaultVersion: v2.16.1
+defaultVersion: v2.23.0
 documentation: https://hasura.io/docs/latest/index/
 type: hasura
 name: Hasura
@@ -16,8 +16,7 @@ services:
     volumes: []
     environment:
       - HASURA_GRAPHQL_ENABLE_CONSOLE=$$config_hasura_graphql_enable_console
-      - >-
-        HASURA_GRAPHQL_METADATA_DATABASE_URL=$$secret_hasura_graphql_metadata_database_url
+      - HASURA_GRAPHQL_METADATA_DATABASE_URL=$$secret_hasura_graphql_metadata_database_url
       - HASURA_GRAPHQL_ADMIN_SECRET=$$secret_hasura_graphql_admin_secret
     ports:
       - '8080'
@@ -41,8 +40,7 @@ variables:
   - id: $$secret_hasura_graphql_metadata_database_url
     name: HASURA_GRAPHQL_METADATA_DATABASE_URL
     label: Hasura Metadata Database URL
-    defaultValue: >-
-      postgresql://$$config_postgres_user:$$secret_postgres_password@$$id-postgresql:5432/$$config_postgres_db
+    defaultValue: postgresql://$$config_postgres_user:$$secret_postgres_password@$$id-postgresql:5432/$$config_postgres_db
     description: ''
   - id: $$secret_hasura_graphql_admin_secret
     name: HASURA_GRAPHQL_ADMIN_SECRET

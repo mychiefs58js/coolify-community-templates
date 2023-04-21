@@ -1,22 +1,20 @@
 templateVersion: 1.0.0
-defaultVersion: 1.5.0-16-debian
-documentation: "https://docs.soketi.app/"
+defaultVersion: latest-16-distroless
+documentation: https://docs.soketi.app/
 isBeta: true
 type: soketi-only
 subtype: (Without DB)
 name: Soketi
-description: >-
-  Simple, fast, and resilient open-source WebSockets server as Pusher
-  replacement.
+description: Simple, fast, and resilient open-source WebSockets server as Pusher replacement.
 labels:
   - pusher
   - websockets
 services:
   $$id:
     name: Soketi
-    image: "quay.io/soketi/soketi:$$core_version"
+    image: quay.io/soketi/soketi:$$core_version
     ports:
-      - "6001"
+      - '6001'
     environment:
       - SOKETI_DEBUG=$$config_soketi_debug
       - SOKETI_METRICS_ENABLED=$$config_soketi_metrics_enabled
@@ -24,29 +22,27 @@ services:
       - SOKETI_DEFAULT_APP_KEY=$$secret_soketi_default_app_key
       - SOKETI_DEFAULT_APP_SECRET=$$secret_soketi_default_app_secret
       - SOKETI_DEFAULT_APP_MAX_CONNS=$$config_soketi_default_app_max_conns
-      - >-
-        SOKETI_DEFAULT_APP_ENABLE_CLIENT_MESSAGES=$$config_soketi_default_app_enable_client_messages
-      - >-
-        SOKETI_DEFAULT_APP_USER_AUTHENTICATION=$$config_soketi_default_app_user_authentication
+      - SOKETI_DEFAULT_APP_ENABLE_CLIENT_MESSAGES=$$config_soketi_default_app_enable_client_messages
+      - SOKETI_DEFAULT_APP_USER_AUTHENTICATION=$$config_soketi_default_app_user_authentication
     proxy:
-      - port: "6001"
-      - port: "9601"
+      - port: '6001'
+      - port: '9601'
         domain: $$config_metrics_url
 variables:
   - id: $$config_metrics_url
     name: METRICS_URL
     label: Metrics URL
-    defaultValue: ""
-    description: ""
+    defaultValue: ''
+    description: ''
   - id: $$config_soketi_debug
     name: SOKETI_DEBUG
     label: Debug
-    defaultValue: "0"
+    defaultValue: '0'
     description: 0 - debugging disabled<br>1 - debugging enabled
   - id: $$config_soketi_metrics_enabled
     name: SOKETI_METRICS_ENABLED
     label: Metrics Enabled
-    defaultValue: "0"
+    defaultValue: '0'
     description: 0 - metrics disabled<br>1 - metrics enabled
   - id: $$secret_soketi_default_app_id
     required: true
@@ -72,15 +68,15 @@ variables:
   - id: $$config_soketi_default_app_max_conns
     name: SOKETI_DEFAULT_APP_MAX_CONNS
     label: Max Connections
-    defaultValue: "-1"
+    defaultValue: '-1'
     description: The default app's limit of concurrent connections.
   - id: $$config_soketi_default_app_enable_client_messages
     name: SOKETI_DEFAULT_APP_ENABLE_CLIENT_MESSAGES
     label: Enabled Client Messages
-    defaultValue: "false"
-    description: "false - client messages disabled, true - client messages enabled"
+    defaultValue: 'false'
+    description: false - client messages disabled, true - client messages enabled
   - id: $$config_soketi_default_app_user_authentication
     name: SOKETI_DEFAULT_APP_USER_AUTHENTICATION
     label: User Authentication
-    defaultValue: "true"
-    description: "false - user auth disabled, true - user auth enabled"
+    defaultValue: 'true'
+    description: false - user auth disabled, true - user auth enabled
