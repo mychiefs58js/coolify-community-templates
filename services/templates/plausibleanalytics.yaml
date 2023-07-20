@@ -1,6 +1,6 @@
 templateVersion: 1.0.0
 defaultVersion: v2.0.0
-documentation: https://plausible.io/doc/
+documentation: https://plausible.io/docs/
 arch: amd64
 type: plausibleanalytics
 name: Plausible Analytics
