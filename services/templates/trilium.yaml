@@ -1,7 +1,9 @@
 templateVersion: 1.0.0
 defaultVersion: 0.60.3
 documentation: https://hub.docker.com/r/zadam/trilium
-description: A hierarchical note taking application with focus on building large personal knowledge bases.
+description: >-
+  A hierarchical note taking application with focus on building large personal
+  knowledge bases.
 labels:
   - personal
   - knowledge

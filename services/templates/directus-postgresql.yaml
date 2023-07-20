@@ -4,7 +4,9 @@ documentation: https://docs.directus.io/getting-started/introduction.html
 type: directus-postgresql
 name: Directus
 subname: (PostgreSQL)
-description: Directus is a free and open-source headless CMS framework for managing custom SQL-based databases.
+description: >-
+  Directus is a free and open-source headless CMS framework for managing custom
+  SQL-based databases.
 labels:
   - CMS
   - headless
@@ -61,7 +63,8 @@ variables:
   - id: $$secret_db_connection_string
     name: DB_CONNECTION_STRING
     label: Directus Database Url
-    defaultValue: postgresql://$$config_postgres_user:$$secret_postgres_password@$$id-postgresql:5432/$$config_postgres_db
+    defaultValue: >-
+      postgresql://$$config_postgres_user:$$secret_postgres_password@$$id-postgresql:5432/$$config_postgres_db
     description: ''
   - id: $$config_postgres_db
     main: $$id-postgresql
@@ -91,7 +94,9 @@ variables:
     name: ADMIN_EMAIL
     label: Initial Admin Email
     defaultValue: admin@example.com
-    description: The email address of the first user that is automatically created. You can change it later in Directus.
+    description: >-
+      The email address of the first user that is automatically created. You can
+      change it later in Directus.
   - id: $$secret_admin_password
     name: ADMIN_PASSWORD
     label: Initial Admin Password

@@ -5,7 +5,9 @@ isBeta: true
 type: soketi-only
 subtype: (Without DB)
 name: Soketi
-description: Simple, fast, and resilient open-source WebSockets server as Pusher replacement.
+description: >-
+  Simple, fast, and resilient open-source WebSockets server as Pusher
+  replacement.
 labels:
   - pusher
   - websockets
@@ -22,8 +24,10 @@ services:
       - SOKETI_DEFAULT_APP_KEY=$$secret_soketi_default_app_key
       - SOKETI_DEFAULT_APP_SECRET=$$secret_soketi_default_app_secret
       - SOKETI_DEFAULT_APP_MAX_CONNS=$$config_soketi_default_app_max_conns
-      - SOKETI_DEFAULT_APP_ENABLE_CLIENT_MESSAGES=$$config_soketi_default_app_enable_client_messages
-      - SOKETI_DEFAULT_APP_USER_AUTHENTICATION=$$config_soketi_default_app_user_authentication
+      - >-
+        SOKETI_DEFAULT_APP_ENABLE_CLIENT_MESSAGES=$$config_soketi_default_app_enable_client_messages
+      - >-
+        SOKETI_DEFAULT_APP_USER_AUTHENTICATION=$$config_soketi_default_app_user_authentication
     proxy:
       - port: '6001'
       - port: '9601'

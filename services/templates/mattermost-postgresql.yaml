@@ -5,7 +5,9 @@ documentation: https://docs.mattermost.com/
 type: mattermost-postgresql
 subtype: (postgresql)
 name: Mattermost
-description: Mattermost is an open source platform for secure collaboration across the entire software development lifecycle.
+description: >-
+  Mattermost is an open source platform for secure collaboration across the
+  entire software development lifecycle.
 labels:
   - management
   - collaboration

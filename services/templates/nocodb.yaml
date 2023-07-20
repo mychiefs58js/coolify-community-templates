@@ -3,7 +3,9 @@ defaultVersion: 0.109.3
 documentation: https://docs.nocodb.com
 type: nocodb
 name: NocoDB
-description: Turns any MySQL, PostgreSQL, SQL Server, SQLite & MariaDB into a smart-spreadsheet.
+description: >-
+  Turns any MySQL, PostgreSQL, SQL Server, SQLite & MariaDB into a
+  smart-spreadsheet.
 labels:
   - database
   - airtable
@@ -19,7 +21,8 @@ services:
       - NC_PUBLIC_URL=$$config_public_url
       - NC_AUTH_JWT_SECRET=$$secret_auth_jwt_secret
       - NC_SENTRY_DSN=$$secret_sentry_dsn
-      - NC_CONNECT_TO_EXTERNAL_DB_DISABLED=$$config_connect_to_external_db_disabled
+      - >-
+        NC_CONNECT_TO_EXTERNAL_DB_DISABLED=$$config_connect_to_external_db_disabled
       - NC_DISABLE_TELE=$$config_disable_tele
     volumes:
       - $$id-data:/usr/app/data
@@ -30,7 +33,9 @@ variables:
     name: NC_DB
     label: Database
     defaultValue: ''
-    description: 'MySQL, PostgreSQL and MSSQL connection urls supported. If absent: A local SQLite will be created in root folder.'
+    description: >-
+      MySQL, PostgreSQL and MSSQL connection urls supported. If absent: A local
+      SQLite will be created in root folder.
   - id: $$config_port
     name: PORT
     label: Port
@@ -40,17 +45,23 @@ variables:
     name: DATABASE_URL
     label: Database URL
     defaultValue: ''
-    description: JDBC URL Format. Can be used instead of NC_DB. Used in 1-Click Heroku deployment.
+    description: >-
+      JDBC URL Format. Can be used instead of NC_DB. Used in 1-Click Heroku
+      deployment.
   - id: $$config_public_url
     name: NC_PUBLIC_URL
     label: Public URL
     defaultValue: ''
-    description: 'Used for sending Email invitations. If absent: Best guess from http request params.'
+    description: >-
+      Used for sending Email invitations. If absent: Best guess from http
+      request params.
   - id: $$secret_auth_jwt_secret
     name: NC_AUTH_JWT_SECRET
     label: Auth JWT Secret
     defaultValue: $$generate_hex(64)
-    description: 'JWT secret used for auth and storing other secrets. If absent: A Random secret will be generated.'
+    description: >-
+      JWT secret used for auth and storing other secrets. If absent: A Random
+      secret will be generated.
   - id: $$secret_sentry_dsn
     name: NC_SENTRY_DSN
     label: Sentry DSN

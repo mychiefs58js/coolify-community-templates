@@ -19,8 +19,9 @@ services:
     sysctls:
       net.core.somaxconn: 2048
     command: >
-      bash -c 'bin/console d:m:m --no-interaction && bin/console messenger:setup-transports --no-interaction &&
-      bin/console repman:security:update-db && bin/console assets:install && php-fpm'
+      bash -c 'bin/console d:m:m --no-interaction && bin/console
+      messenger:setup-transports --no-interaction && bin/console
+      repman:security:update-db && bin/console assets:install && php-fpm'
     volumes:
       - $$id-app-public:/app/public
       - $$id-app-var:/app/var
@@ -105,8 +106,9 @@ services:
     files:
       - location: /var/spool/cron/crontabs
         content: >-
-          */5 * * * * /app/bin/console repman:proxy:sync-releases */6 * * * * /app/bin/console
-          repman:proxy:sync-metadata 0 */2 * * * /app/bin/console repman:security:update-db 0 1 * * * /app/bin/console
+          */5 * * * * /app/bin/console repman:proxy:sync-releases */6 * * * *
+          /app/bin/console repman:proxy:sync-metadata 0 */2 * * *
+          /app/bin/console repman:security:update-db 0 1 * * * /app/bin/console
           repman:package:clear-old-dists
   $$id-postgresql:
     name: PostgreSQL
@@ -244,7 +246,8 @@ variables:
   - id: $$secret_database_url
     name: DATABASE_URL
     label: Database URL for PostgreSQL
-    defaultValue: postgresql://$$config_postgres_user:$$secret_postgres_password@$$id-postgresql:5432/$$config_postgres_db
+    defaultValue: >-
+      postgresql://$$config_postgres_user:$$secret_postgres_password@$$id-postgresql:5432/$$config_postgres_db
     description: ''
   - id: $$config_postgres_user
     main: $$id-postgresql

@@ -3,7 +3,9 @@ defaultVersion: 2023.7.19-a446dea1
 documentation: https://docs.searxng.org/
 type: searxng
 name: SearXNG
-description: Free internet metasearch engine which aggregates results from more than 70 search services.
+description: >-
+  Free internet metasearch engine which aggregates results from more than 70
+  search services.
 services:
   $$id:
     name: SearXNG
@@ -39,7 +41,9 @@ services:
                                           url: redis://:$$secret_redis_password@$$id-redis:6379/0
   $$id-redis:
     name: Redis
-    command: redis-server --requirepass $$secret_redis_password --save "" --appendonly "no"
+    command: >-
+      redis-server --requirepass $$secret_redis_password --save "" --appendonly
+      "no"
     depends_on: []
     image: redis:7-alpine
     volumes:

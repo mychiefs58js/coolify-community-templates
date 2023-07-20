@@ -9,8 +9,8 @@ const templateDir = "./services/templates";
 
 for (const service of services) {
   let { name, tags } = service;
-  if (name.startsWith('wordpress')) {
-    continue
+  if (name.startsWith("wordpress")) {
+    continue;
   }
   let sorted = tags;
   try {
@@ -21,8 +21,5 @@ for (const service of services) {
     await fs.readFile(`${templateDir}/${name}.yaml`, "utf8")
   );
   data.defaultVersion = latest;
-  await fs.writeFile(
-    `${templateDir}/${name}.yaml`,
-    yaml.dump(data, { lineWidth: 120 })
-  );
+  await fs.writeFile(`${templateDir}/${name}.yaml`, yaml.dump(data));
 }
