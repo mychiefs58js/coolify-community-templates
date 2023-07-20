@@ -1,5 +1,5 @@
 templateVersion: 1.0.0
-defaultVersion: 7.10.0
+defaultVersion: 8.0.0
 isBeta: true
 documentation: https://docs.mattermost.com/
 type: mattermost-postgresql

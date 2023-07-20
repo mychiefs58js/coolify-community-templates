@@ -1,5 +1,5 @@
 templateVersion: 1.0.0
-defaultVersion: RELEASE.2023-04-20T17-56-55Z.fips
+defaultVersion: RELEASE.2023-07-18T17-49-40Z.fips
 documentation: https://min.io/docs/minio
 type: minio
 name: MinIO

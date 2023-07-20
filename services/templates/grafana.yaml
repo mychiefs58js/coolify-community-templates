@@ -1,5 +1,5 @@
 templateVersion: 1.0.0
-defaultVersion: 9.4.7
+defaultVersion: 10.0.2
 documentation: https://hub.docker.com/r/grafana/grafana
 type: grafana
 name: Grafana

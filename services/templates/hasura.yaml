@@ -1,5 +1,5 @@
 templateVersion: 1.0.0
-defaultVersion: v2.23.0
+defaultVersion: v2.30.0
 documentation: https://hasura.io/docs/latest/index/
 type: hasura
 name: Hasura

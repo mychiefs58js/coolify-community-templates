@@ -1,5 +1,5 @@
 templateVersion: 1.0.0
-defaultVersion: 1.21.2
+defaultVersion: 1.22.1
 documentation: https://hub.docker.com/r/louislam/uptime-kuma
 description: A free & fancy self-hosted monitoring tool.
 labels:

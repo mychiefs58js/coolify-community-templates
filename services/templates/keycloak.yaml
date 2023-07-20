@@ -1,5 +1,5 @@
 templateVersion: 1.0.0
-defaultVersion: 21.1.0
+defaultVersion: 22.0.1
 documentation: https://www.keycloak.org/documentation
 type: keycloak
 name: Keycloak

@@ -1,5 +1,5 @@
 templateVersion: 1.0.0
-defaultVersion: 9.25.2
+defaultVersion: 10.4.3
 documentation: https://docs.directus.io/getting-started/introduction.html
 type: directus-postgresql
 name: Directus

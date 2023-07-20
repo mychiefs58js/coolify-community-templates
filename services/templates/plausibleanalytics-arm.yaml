@@ -1,5 +1,5 @@
 templateVersion: 1.0.0
-defaultVersion: v1.5.1
+defaultVersion: v2.0.0
 documentation: https://plausible.io/doc/
 type: plausibleanalytics-arm
 name: Plausible Analytics (ARM)
