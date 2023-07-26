@@ -1,5 +1,5 @@
 templateVersion: 1.0.0
-defaultVersion: 3.7.6
+defaultVersion: 3.7.7
 documentation: https://github.com/freyacodes/Lavalink
 description: Standalone audio sending node based on Lavaplayer.
 type: lavalink

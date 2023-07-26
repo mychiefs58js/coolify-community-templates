@@ -1,5 +1,5 @@
 templateVersion: 1.0.0
-defaultVersion: 1.20.0
+defaultVersion: 1.20.1
 documentation: https://docs.gitea.io
 type: gitea
 name: Gitea
